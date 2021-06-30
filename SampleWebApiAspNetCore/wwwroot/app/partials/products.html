@@ -1,0 +1,132 @@
+﻿<style>
+    .page-modal {
+        position: absolute;
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        display: none;
+    }
+</style>
+
+<header style="text-align:center">
+
+    <button type="button" class="btn btn-primary" onclick="$('.page-modal').toggle(500)" style="margin-bottom:20px">
+        Adicionar Novo Produto
+
+    </button>
+</header>
+<!--  products view  -->
+<div class="row page-modal">
+    <div class="container">
+        <h4 style="text-align:center;">Informe os detalhes de seu produto</h4>
+
+        <hr />
+        <form class="form-horizontal" role="form">
+
+            <input type="hidden" required data-ng-model="id" class="form-control" id="id">
+            <div class="form-group">
+                <label for="date" class="control-label">Data</label>
+                <div>
+                    <input type="date" required data-ng-model="date" class="form-control" id="date" placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title" class="control-label">Titulo</label>
+                <div>
+                    <input type="text" required ng-model="title" ng-value="title" class="form-control" id="title" placeholder="Titulo">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="control-label">Descrição</label>
+                <div>
+                    <input type="text" required data-ng-model="description" class="form-control" id="description" placeholder="Descrição">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="legislation" class="control-label">Legislação</label>
+                <div>
+                    <input type="text" data-ng-model="legislation" class="form-control" id="legislation" placeholder="Legislação">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type" class="control-label">Tipo</label>
+                <div>
+                    <input type="text" data-ng-model="type" class="form-control" id="type" placeholder="Tipo">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="startTime" class="control-label">Inicio</label>
+                <div>
+                    <input type="text" data-ng-model="startTime" class="form-control" id="startTime" placeholder="Início">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="endTime" class="control-label">Termino</label>
+                <div>
+                    <input type="text" data-ng-model="endTime" class="form-control" id="endTime" placeholder="Termino">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="variableDates" class="control-label">variableDates</label>
+                <div>
+                    <input type="text" data-ng-model="variableDates" class="form-control" id="variableDates" placeholder="variableDates">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <button style="margin-bottom:20px" type="button" class="btn btn-warning" onclick="$('.page-modal').toggle(500)">
+                        Cancelar
+
+                    </button>
+                    <button style="margin-bottom:20px; float:right" type="button" class="btn btn-primary"
+                            data-ng-disabled="!title"
+                            data-ng-click="insertProduct()">
+                        Salvar
+
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Data</th>
+            <th>Titulo</th>
+            <th>Inicio</th>
+            <th>Termino</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr data-ng-repeat="product in products">
+            <td>{{ product.id}}</td>
+            <td>{{ product.title}}</td>
+            <td>{{ product.startTime}}</td>
+            <td>{{ product.endTime}}</td>
+            <td>
+
+                <button data-ng-click="updateProduct(product)">
+                    <a class="glyphicon glyphicon-edit"></a>
+                </button>
+                <button data-ng-click="deleteProduct(product.id)">
+                    <a class="glyphicon glyphicon-trash"></a>
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
